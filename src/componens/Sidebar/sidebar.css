@@ -1,0 +1,19 @@
+.header {
+    width: 250px;
+    background-color: lightgreen;
+    padding: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sidebarLink {
+    display: block;
+    width: 40%;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.link:last-child {
+    margin-top: 50px;
+}

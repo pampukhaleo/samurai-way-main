@@ -1,0 +1,9 @@
+.nav {
+    height: 15vh;
+    display: flex;
+    background-color: lightgreen;
+}
+
+.logo {
+    height: 100%;
+}

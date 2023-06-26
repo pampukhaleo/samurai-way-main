@@ -1,4 +1,5 @@
 import React from "react";
+import "./technologies.css"
 
 type PropsType = {
   technologiesList: Array<string>
@@ -6,7 +7,7 @@ type PropsType = {
 
 function Technologies({technologiesList}: PropsType) {
   return (
-    <ul>
+    <ul className="technologiesContext">
       {technologiesList.map(name =>
         <li>
           {name}
