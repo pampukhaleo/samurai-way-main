@@ -1,0 +1,23 @@
+.profile_container {
+    margin-top: 15px;
+    display: flex;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+}
+
+.profile-data_container {
+    margin-left: 35px;
+}
+
+.profile-data_name {
+    margin: 0;
+}
+
+.profile-data {
+    list-style: none;
+    padding: 0;
+    font-size: 20px;
+}
