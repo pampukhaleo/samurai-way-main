@@ -1,0 +1,30 @@
+.posts-list {
+    padding: 0;
+    list-style: none;
+}
+
+.post {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.post + .post {
+    margin-top: 20px;
+}
+
+.post:last-child {
+    margin-bottom: 20px;
+}
+
+.post_circle {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: yellow;
+}
+
+.post-text {
+    font-size: 20px;
+}
