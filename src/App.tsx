@@ -1,12 +1,18 @@
 import React from 'react';
 import './App.css';
 import Header from "./componens/Header/Header";
-import Technologies from "./componens/Technologies/Technologies";
+import Profile from "./componens/Profile/Profile";
 import Footer from "./componens/Footer/Footer";
 import Sidebar from "./componens/Sidebar/Sidebar";
 
 const headerButtonsList = ['Profile', 'Messages', 'News', 'Music', 'Settings']
-const technologiesArray = ['css', 'html', 'js', 'react']
+const profileData = {
+  name: 'Leo P.',
+  birthday: 32,
+  city: 'Kyiv',
+  education: 'JS',
+  website: 'https://github.com/pampukhaleo'
+}
 
 function App() {
   return (
@@ -14,7 +20,7 @@ function App() {
       <Header/>
       <main className="main">
         <Sidebar buttonsList={headerButtonsList}/>
-        <Technologies technologiesList={technologiesArray}/>
+        <Profile profileData={profileData}/>
       </main>
       <Footer buttonsList={headerButtonsList}/>
     </div>
