@@ -1,5 +1,5 @@
 import React from 'react';
-import {PropsType} from '../Profile';
+import { PropsType } from '../Profile';
 import './profileData.css'
 
 export const ProfileData = ({profileData}: PropsType) => {

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button} from '../../Button/Button';
+import { Button } from '../../Button/Button';
 import './posts.css'
-import {PostItem} from './PostItem/PostItem';
+import { PostItem } from './PostItem/PostItem';
 
 type PostsType = {
   profilePicture: string
@@ -16,9 +16,9 @@ export const Posts = ({profilePicture}: PostsType) => {
         <Button name="Send"/>
       </div>
       <ul className="posts-list">
-        <PostItem profilePicture={profilePicture} text='Hi, my name is Neo'/>
-        <PostItem profilePicture={profilePicture} text='Hello, im from Ukraine'/>
-        <PostItem profilePicture={profilePicture} text='How are you all doing boys'/>
+        <PostItem profilePicture={profilePicture} text="Hi, my name is Neo"/>
+        <PostItem profilePicture={profilePicture} text="Hello, im from Ukraine"/>
+        <PostItem profilePicture={profilePicture} text="How are you all doing boys"/>
       </ul>
     </div>
   )

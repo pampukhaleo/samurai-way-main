@@ -1,5 +1,5 @@
-import React from "react";
-import "./sidebar.css"
+import React from 'react';
+import './sidebar.css'
 
 type PropsType = {
   buttonsList: Array<string>

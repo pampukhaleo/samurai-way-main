@@ -1,7 +1,7 @@
 import React from 'react';
+import { Posts } from './Posts/Posts';
 import './profile.css'
-import {ProfileData} from './ProfileData/ProfileData';
-import {Posts} from './Posts/Posts';
+import { ProfileData } from './ProfileData/ProfileData';
 
 type ProfileType = {
   name: string
@@ -19,7 +19,7 @@ function Profile({profileData}: PropsType) {
   return (
     <div className="profileContent">
       <ProfileData profileData={profileData}/>
-      <Posts profilePicture={profileData.profilePicture} />
+      <Posts profilePicture={profileData.profilePicture}/>
     </div>
   )
 }
