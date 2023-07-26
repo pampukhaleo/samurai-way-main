@@ -11,6 +11,7 @@ type ProfileType = {
   website: string
   profilePicture: string
 }
+
 export type PropsType = {
   profileData: ProfileType
 }

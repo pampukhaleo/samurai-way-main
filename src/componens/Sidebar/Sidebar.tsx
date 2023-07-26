@@ -2,16 +2,22 @@ import React from 'react';
 import './sidebar.css'
 
 type PropsType = {
-  buttonsList: Array<string>
+  buttonsList: ButtonList[]
 }
 
-function Sidebar({buttonsList}: PropsType) {
+type ButtonList = {
+  name: string
+  href: string
+  id: number
+}
+
+function Sidebar({ buttonsList }: PropsType) {
   return (
     <header className="header">
-      {buttonsList.map(name =>
-        <a href="#" className="sidebarLink">
-          {name}
-        </a>)}
+      { buttonsList.map(item =>
+        <a key={item.id} href={ item.href } className="sidebarLink">
+          { item.name }
+        </a>) }
     </header>
   )
 }

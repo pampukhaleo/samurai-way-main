@@ -1,11 +1,22 @@
 import React from 'react';
 import './App.css';
-import Header from "./componens/Header/Header";
-import Profile from "./componens/Profile/Profile";
-import Footer from "./componens/Footer/Footer";
-import Sidebar from "./componens/Sidebar/Sidebar";
+import Header from './componens/Header/Header';
+import Profile from './componens/Profile/Profile';
+import Footer from './componens/Footer/Footer';
+import Sidebar from './componens/Sidebar/Sidebar';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { News } from './componens/News/News';
+import { Messages } from './componens/Messages/Messages';
+import { Music } from './componens/Music/Music';
+import { Settings } from './componens/Settings/Settings';
 
-const headerButtonsList = ['Profile', 'Messages', 'News', 'Music', 'Settings']
+const headerButtonsList = [
+  { id: 1, name: 'Profile', href: './profile' },
+  { id: 2, name: 'Messages', href: './messages' },
+  { id: 3, name: 'News', href: './news' },
+  { id: 4, name: 'Music', href: './music' },
+  { id: 5, name: 'Settings', href: './settings' },
+]
 const profileData = {
   name: 'Leo P.',
   birthday: 32,
@@ -17,14 +28,24 @@ const profileData = {
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <main className="main">
-        <Sidebar buttonsList={headerButtonsList}/>
-        {/*<Profile profileData={profileData}/>*/}
-      </main>
-      <Footer buttonsList={headerButtonsList}/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header/>
+        <main className="main">
+          <Sidebar buttonsList={ headerButtonsList }/>
+          {/*<Profile profileData={profileData}/>*/ }
+          <div className="content">
+            <Route path="/profile" render={ () => <Profile profileData={ profileData }/> }/>
+            <Route path="/messages" render={ () => <Messages/> }/>
+            <Route path="/news" render={ () => <News/> }/>
+            <Route path="/music" render={ () => <Music/> }/>
+            <Route path="/settings" render={ () => <Settings/> }/>
+          </div>
+        </main>
+        <Footer buttonsList={ headerButtonsList }/>
+      </div>
+    </BrowserRouter>
+
   );
 }
 
