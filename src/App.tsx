@@ -21,7 +21,7 @@ function App() {
       <Header/>
       <main className="main">
         <Sidebar buttonsList={headerButtonsList}/>
-        <Profile profileData={profileData}/>
+        {/*<Profile profileData={profileData}/>*/}
       </main>
       <Footer buttonsList={headerButtonsList}/>
     </div>
