@@ -17,6 +17,7 @@ const headerButtonsList = [
   { id: 4, name: 'Music', href: './music' },
   { id: 5, name: 'Settings', href: './settings' },
 ]
+
 const profileData = {
   name: 'Leo P.',
   birthday: 32,
@@ -25,6 +26,29 @@ const profileData = {
   website: 'https://github.com/pampukhaleo',
   profilePicture: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80'
 }
+
+const messageData = [
+  {
+    id: 1,
+    profileName: 'Leo',
+    messages: [
+      { message: 'textte xttext text qwqweqwe qwe qwasd asdzxcz asdqwe dazscz qaweqwe dsad eqwe' },
+      { message: 'text1' },
+      { message: 'text2' },
+      { message: 'text3' },
+    ]
+  },
+  {
+    id: 2,
+    profileName: 'Neo',
+    messages: [
+      { message: 'text3' },
+      { message: 'text4' },
+      { message: 'text5' },
+      { message: 'text6' },
+    ]
+  },
+]
 
 function App() {
   return (
@@ -36,7 +60,7 @@ function App() {
           {/*<Profile profileData={profileData}/>*/ }
           <div className="content">
             <Route path="/profile" render={ () => <Profile profileData={ profileData }/> }/>
-            <Route path="/messages" render={ () => <Messages/> }/>
+            <Route path="/messages" render={ () => <Messages messageData={ messageData }/> }/>
             <Route path="/news" render={ () => <News/> }/>
             <Route path="/music" render={ () => <Music/> }/>
             <Route path="/settings" render={ () => <Settings/> }/>

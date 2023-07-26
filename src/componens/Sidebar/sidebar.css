@@ -1,7 +1,7 @@
 .header {
-    width: 250px;
+    min-width: 150px;
     background-color: lightgreen;
-    padding: 25px;
+    padding: 35px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -9,11 +9,20 @@
 .sidebarLink {
     display: block;
     width: 40%;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     text-decoration: none;
     color: black;
+    font-weight: bold;
 }
 
-.link:last-child {
+.sidebarLink:hover {
+    color: white;
+}
+
+.active {
+    color: blue;
+}
+
+.sidebarLink:last-child {
     margin-top: 50px;
 }
