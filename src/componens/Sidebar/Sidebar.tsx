@@ -1,5 +1,6 @@
 import React from 'react';
 import './sidebar.css'
+import { NavLink } from 'react-router-dom';
 
 type PropsType = {
   buttonsList: ButtonList[]
@@ -15,9 +16,9 @@ function Sidebar({ buttonsList }: PropsType) {
   return (
     <header className="header">
       { buttonsList.map(item =>
-        <a key={item.id} href={ item.href } className="sidebarLink">
+        <NavLink key={item.id} to={ item.href } className="sidebarLink">
           { item.name }
-        </a>) }
+        </NavLink>) }
     </header>
   )
 }
