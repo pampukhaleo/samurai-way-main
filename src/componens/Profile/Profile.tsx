@@ -2,18 +2,10 @@ import React from 'react';
 import { Posts } from './Posts/Posts';
 import './profile.css'
 import { ProfileData } from './ProfileData/ProfileData';
+import { ProfileDataType } from '../../index';
 
-type ProfileType = {
-  name: string
-  birthday: number
-  city: string
-  education: string
-  website: string
-  profilePicture: string
-}
-
-export type PropsType = {
-  profileData: ProfileType
+type PropsType = {
+  profileData: ProfileDataType
 }
 
 function Profile({profileData}: PropsType) {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { DialogType } from '../../../App';
+import { DialogDataType } from '../../../index';
 
 type PropsType = {
-  dialogData: DialogType[]
+  dialogData: DialogDataType[]
 }
 
 export const DialogsItem = ({ dialogData }: PropsType) => {

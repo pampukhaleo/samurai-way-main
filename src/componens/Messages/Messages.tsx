@@ -1,15 +1,13 @@
 import React from 'react'
 import './messages.css'
 import { DialogsItem } from './Dialogs/Dialog';
-import { DialogType, MessageDataType } from '../../App';
 import { Message } from './Message/Message';
+import { DialogDataType, MessageDataType } from '../../index';
 
 type PropsTyper = {
   messageData: MessageDataType[]
-  dialogData: DialogType[]
+  dialogData: DialogDataType[]
 }
-
-
 
 export const Messages = ({ messageData, dialogData }: PropsTyper) => {
   return (

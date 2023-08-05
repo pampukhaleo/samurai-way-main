@@ -1,15 +1,10 @@
 import React from 'react';
 import './sidebar.css'
 import { NavLink } from 'react-router-dom';
+import { HeaderButtonListType } from '../../index';
 
 type PropsType = {
-  buttonsList: ButtonList[]
-}
-
-type ButtonList = {
-  name: string
-  href: string
-  id: number
+  buttonsList: HeaderButtonListType[]
 }
 
 function Sidebar({ buttonsList }: PropsType) {
