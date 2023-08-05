@@ -14,3 +14,6 @@
 .messages {
     padding: 15px;
 }
+.container .active {
+    color: red
+}

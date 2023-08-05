@@ -11,11 +11,11 @@ import { Music } from './componens/Music/Music';
 import { Settings } from './componens/Settings/Settings';
 
 const headerButtonsList = [
-  { id: 1, name: 'Profile', href: './profile' },
-  { id: 2, name: 'Messages', href: './messages' },
-  { id: 3, name: 'News', href: './news' },
-  { id: 4, name: 'Music', href: './music' },
-  { id: 5, name: 'Settings', href: './settings' },
+  { id: 1, name: 'Profile', href: '/profile' },
+  { id: 2, name: 'Messages', href: '/messages/' },
+  { id: 3, name: 'News', href: '/news' },
+  { id: 4, name: 'Music', href: '/music' },
+  { id: 5, name: 'Settings', href: '/settings' },
 ]
 
 const profileData = {
@@ -27,28 +27,37 @@ const profileData = {
   profilePicture: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80'
 }
 
-const messageData = [
+const dialogData = [
   {
     id: 1,
     profileName: 'Leo',
-    messages: [
-      { message: 'textte xttext text qwqweqwe qwe qwasd asdzxcz asdqwe dazscz qaweqwe dsad eqwe' },
-      { message: 'text1' },
-      { message: 'text2' },
-      { message: 'text3' },
-    ]
   },
   {
     id: 2,
     profileName: 'Neo',
-    messages: [
-      { message: 'text3' },
-      { message: 'text4' },
-      { message: 'text5' },
-      { message: 'text6' },
-    ]
   },
 ]
+
+const messageData = [
+  {
+    id: 1,
+    messages: ['textte xttext text qwqweqwe qwe qwasd asdzxcz asdqwe dazscz qaweqwe dsad eqwe', 'text1', 'text2', 'text3']
+  },
+  {
+    id: 2,
+    messages: ['text3', 'text4', 'text5', 'text6']
+  },
+]
+
+export type MessageDataType = {
+  id: number
+  messages: Array<string>
+}
+
+export type DialogType = {
+  id: number
+  profileName: string
+}
 
 function App() {
   return (
@@ -60,7 +69,9 @@ function App() {
           {/*<Profile profileData={profileData}/>*/ }
           <div className="content">
             <Route path="/profile" render={ () => <Profile profileData={ profileData }/> }/>
-            <Route path="/messages" render={ () => <Messages messageData={ messageData }/> }/>
+            <Route path="/messages/"
+                   render={ () => <Messages dialogData={ dialogData }
+                                            messageData={ messageData }/> }/>
             <Route path="/news" render={ () => <News/> }/>
             <Route path="/music" render={ () => <Music/> }/>
             <Route path="/settings" render={ () => <Settings/> }/>

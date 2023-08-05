@@ -1,35 +1,21 @@
 import React from 'react'
 import './messages.css'
+import { DialogsItem } from './Dialogs/Dialog';
+import { DialogType, MessageDataType } from '../../App';
+import { Message } from './Message/Message';
 
-type MessageType = {
-  message: string
+type PropsTyper = {
+  messageData: MessageDataType[]
+  dialogData: DialogType[]
 }
 
-type MessagesType = {
-  id: number
-  profileName: string
-  messages: MessageType[]
-}
 
-type MessageDataPropsType = {
-  messageData: MessagesType[]
-}
 
-export const Messages = ({ messageData }: MessageDataPropsType) => {
+export const Messages = ({ messageData, dialogData }: PropsTyper) => {
   return (
     <div className="container">
-      <div className="dialogs">
-        { messageData.map(dialog => (
-          <h2>{ dialog.profileName }</h2>
-        )) }
-      </div>
-      <div className="messages">
-        { messageData.map(({ messages }) => (
-          messages.map(({ message }) => (
-            <p>{ message }</p>
-          ))
-        )) }
-      </div>
+      <DialogsItem dialogData={ dialogData }/>
+      <Message messageData={ messageData }/>
     </div>
   )
 }
