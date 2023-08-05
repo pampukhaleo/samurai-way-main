@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { DialogDataType } from '../../../index';
+import { DialogDataType } from '../../../redux/state';
 
 type PropsType = {
   dialogData: DialogDataType[]

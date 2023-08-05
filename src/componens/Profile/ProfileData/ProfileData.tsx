@@ -1,6 +1,6 @@
 import React from 'react';
 import './profileData.css'
-import { ProfileDataType } from '../../../index';
+import { ProfileDataType } from '../../../redux/state';
 
 type PropsType = {
   profileData: ProfileDataType

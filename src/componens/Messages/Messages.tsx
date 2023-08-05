@@ -2,7 +2,7 @@ import React from 'react'
 import './messages.css'
 import { DialogsItem } from './Dialogs/Dialog';
 import { Message } from './Message/Message';
-import { DialogDataType, MessageDataType } from '../../index';
+import { DialogDataType, MessageDataType } from '../../redux/state';
 
 type PropsTyper = {
   messageData: MessageDataType[]

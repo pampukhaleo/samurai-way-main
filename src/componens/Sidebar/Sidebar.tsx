@@ -1,7 +1,7 @@
 import React from 'react';
 import './sidebar.css'
 import { NavLink } from 'react-router-dom';
-import { HeaderButtonListType } from '../../index';
+import { HeaderButtonListType } from '../../redux/state';
 
 type PropsType = {
   buttonsList: HeaderButtonListType[]
