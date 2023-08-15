@@ -1,3 +1,5 @@
+import { Render } from '../index';
+
 export type ProfileDataType = {
   name: string
   birthday: number
@@ -5,6 +7,13 @@ export type ProfileDataType = {
   education: string
   website: string
   profilePicture: string
+  posts: Posts[]
+}
+
+type Posts = {
+  id: number
+  text: string
+  likes: number
 }
 
 export type HeaderButtonListType = {
@@ -42,7 +51,12 @@ export const state = {
     city: 'Kyiv',
     education: 'JS',
     website: 'https://github.com/pampukhaleo',
-    profilePicture: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80'
+    profilePicture: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80',
+    posts: [
+      {id: 1, text: 'Hi, my name is Neo', likes: 12},
+      {id: 2, text: 'Hello, im from Ukraine', likes: 13},
+      {id: 3, text: 'How are you all doing boys', likes: 14}
+    ],
   },
   dialogData: [
     {
@@ -116,4 +130,14 @@ export const state = {
         }]
     },
   ]
+}
+
+export const addPost = (text: string) => {
+  const newPost = {
+    id: 5,
+    text,
+    likes: 0
+  }
+  state.profileData.posts.push(newPost)
+  Render()
 }
