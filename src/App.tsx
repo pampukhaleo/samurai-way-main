@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Header from './componens/Header/Header';
 import Profile from './componens/Profile/Profile';
@@ -9,7 +9,7 @@ import { News } from './componens/News/News';
 import { Messages } from './componens/Messages/Messages';
 import { Music } from './componens/Music/Music';
 import { Settings } from './componens/Settings/Settings';
-import { addPost, DialogDataType, HeaderButtonListType, MessageDataType, ProfileDataType } from './redux/state';
+import { DialogDataType, HeaderButtonListType, MessageDataType, ProfileDataType } from './redux/state';
 
 type StateType = {
   headerButtonsList: HeaderButtonListType[]
@@ -20,11 +20,12 @@ type StateType = {
 
 type PropsType = {
   state: StateType
-  addPost: (text: string) => void
+  addPost: () => void
+  changePostText: (text: string) => void
 }
 
 function App(props: PropsType) {
-  const {state, addPost} = props
+  const {state, addPost, changePostText} = props
   return (
     <BrowserRouter>
       <div className="App">
@@ -33,7 +34,7 @@ function App(props: PropsType) {
           <Sidebar buttonsList={ state.headerButtonsList }/>
           <div className="content">
             <Route path="/profile"
-                   render={ () => <Profile addPost={ addPost } profileData={ state.profileData }/> }/>
+                   render={ () => <Profile addPost={ addPost } changePostText={changePostText} profileData={ state.profileData }/> }/>
             <Route path="/messages/"
                    render={ () => <Messages dialogData={ state.dialogData }
                                             messageData={ state.messageData }/> }/>

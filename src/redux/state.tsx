@@ -8,6 +8,7 @@ export type ProfileDataType = {
   website: string
   profilePicture: string
   posts: Posts[]
+  postText: string
 }
 
 type Posts = {
@@ -57,6 +58,7 @@ export const state = {
       {id: 2, text: 'Hello, im from Ukraine', likes: 13},
       {id: 3, text: 'How are you all doing boys', likes: 14}
     ],
+    postText: ''
   },
   dialogData: [
     {
@@ -132,12 +134,18 @@ export const state = {
   ]
 }
 
-export const addPost = (text: string) => {
+export const addPost = () => {
   const newPost = {
     id: 5,
-    text,
+    text: state.profileData.postText,
     likes: 0
   }
   state.profileData.posts.push(newPost)
+  state.profileData.postText = ''
+  Render()
+}
+
+export const changePostText = (text: string) => {
+  state.profileData.postText = text
   Render()
 }

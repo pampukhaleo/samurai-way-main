@@ -12,23 +12,29 @@ type Posts = {
 type PostsType = {
   profilePicture: string
   posts: Posts[]
-  addPost: (text: string) => void
+  postText: string
+  addPost: () => void
+  changePostText: (text: string) => void
 }
 
-export const Posts = ({ profilePicture, posts, addPost }: PostsType) => {
+export const Posts = ({ profilePicture, posts, addPost, changePostText, postText }: PostsType) => {
 
   const postTextValue = useRef<HTMLInputElement>(null);
   const onClickHandler = () => {
-    // const postText = postTextValue?.current?.value ? postTextValue?.current?.value : ''
+    addPost()
+  }
+
+  const onChangeHandler = () => {
     const postText = postTextValue?.current?.value ?? ''
-    addPost(postText)
+    changePostText(postText)
   }
 
   return (
     <div className="posts_container">
       <h2>My posts</h2>
       <div className="posts-input_container">
-        <input className="posts_new-post-input" type="text" ref={postTextValue}/>
+        <input className="posts_new-post-input" type="text" ref={ postTextValue } value={ postText }
+               onChange={ onChangeHandler }/>
         <Button name="Send" callBack={ onClickHandler }/>
       </div>
       <ul className="posts-list">

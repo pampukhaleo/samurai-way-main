@@ -6,16 +6,20 @@ import { ProfileDataType } from '../../redux/state';
 
 type PropsType = {
   profileData: ProfileDataType
-  addPost: (text: string) => void
+  addPost: () => void
+  changePostText: (text: string) => void
 }
 
-function Profile({ profileData, addPost }: PropsType) {
+function Profile({ profileData, addPost, changePostText }: PropsType) {
   return (
     <div className="profileContent">
       <ProfileData profileData={ profileData }/>
       <Posts profilePicture={ profileData.profilePicture }
              posts={ profileData.posts }
-             addPost={addPost}/>
+             postText={ profileData.postText }
+             addPost={ addPost }
+             changePostText={ changePostText }
+      />
     </div>
   )
 }
