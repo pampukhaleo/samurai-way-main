@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { addPost, changePostText, state } from './redux/state';
+import { addPost, changePostText, state, subscribe } from './redux/state';
 
 export const Render = () => {
   ReactDOM.render(
@@ -13,4 +13,6 @@ export const Render = () => {
 }
 
 Render()
+
+subscribe(Render)
 

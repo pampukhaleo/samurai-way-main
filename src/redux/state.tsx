@@ -1,4 +1,6 @@
-import { Render } from '../index';
+let render = () => {
+  console.log('State changed')
+}
 
 export type ProfileDataType = {
   name: string
@@ -142,10 +144,14 @@ export const addPost = () => {
   }
   state.profileData.posts.push(newPost)
   state.profileData.postText = ''
-  Render()
+  render()
 }
 
 export const changePostText = (text: string) => {
   state.profileData.postText = text
-  Render()
+  render()
+}
+
+export const subscribe = (observer: any) => {
+  render = observer
 }
