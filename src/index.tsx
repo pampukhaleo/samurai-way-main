@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { addPost, changePostText, state, subscribe } from './redux/state';
+import { store } from './redux/state';
 
 export const Render = () => {
   ReactDOM.render(
-    <App state={ state } addPost={ addPost } changePostText={ changePostText }/>,
+    <App store={store} />,
     document.getElementById('root')
   );
   console.log('rendered')
@@ -14,5 +14,5 @@ export const Render = () => {
 
 Render()
 
-subscribe(Render)
+store.subscribe(Render)
 

@@ -9,23 +9,16 @@ import { News } from './componens/News/News';
 import { Messages } from './componens/Messages/Messages';
 import { Music } from './componens/Music/Music';
 import { Settings } from './componens/Settings/Settings';
-import { DialogDataType, HeaderButtonListType, MessageDataType, ProfileDataType } from './redux/state';
-
-type StateType = {
-  headerButtonsList: HeaderButtonListType[]
-  profileData: ProfileDataType
-  dialogData: DialogDataType[]
-  messageData: MessageDataType[]
-}
+import { StoreType } from './redux/state';
 
 type PropsType = {
-  state: StateType
-  addPost: () => void
-  changePostText: (text: string) => void
+  store: StoreType
 }
 
 function App(props: PropsType) {
-  const {state, addPost, changePostText} = props
+  const { store } = props
+  const state = props.store.getState()
+  console.log(state.profileData);
   return (
     <BrowserRouter>
       <div className="App">
@@ -34,7 +27,9 @@ function App(props: PropsType) {
           <Sidebar buttonsList={ state.headerButtonsList }/>
           <div className="content">
             <Route path="/profile"
-                   render={ () => <Profile addPost={ addPost } changePostText={changePostText} profileData={ state.profileData }/> }/>
+                   render={ () => <Profile addPost={ store.addPost.bind(store) }
+                                           changePostText={ store.changePostText.bind(store) }
+                                           profileData={ state.profileData }/> }/>
             <Route path="/messages/"
                    render={ () => <Messages dialogData={ state.dialogData }
                                             messageData={ state.messageData }/> }/>
