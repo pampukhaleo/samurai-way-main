@@ -48,9 +48,19 @@ export type StoreType = {
   _subscriber: () => void
   getState: () => RootStateType
   subscribe: (observer: () => void) => void
-  addPost: () => void
-  changePostText: (text: string) => void
+  dispatch: (action: ActionTypes) => void
 }
+
+type AddPostAT = {
+  type: 'ADD-POST'
+}
+
+type ChangePostTextAT = {
+  type: 'CHANGE-POST-TEXT'
+  text: string
+}
+
+export type ActionTypes = AddPostAT | ChangePostTextAT
 
 export const store: StoreType = {
   _state: {
@@ -157,18 +167,35 @@ export const store: StoreType = {
   subscribe(observer) {
     this._subscriber = observer
   },
-  addPost() {
-    const newPost = {
-      id: 5,
-      text: this._state.profileData.postText,
-      likes: 0
+  dispatch(action: ActionTypes) {
+    switch (action.type) {
+      case 'ADD-POST':
+        const newPost = {
+          id: 5,
+          text: this._state.profileData.postText,
+          likes: 0
+        }
+        this._state.profileData.posts.push(newPost)
+        this._state.profileData.postText = ''
+        this._subscriber()
+        break
+      case 'CHANGE-POST-TEXT':
+        this._state.profileData.postText = action.text
+        this._subscriber()
+        break
     }
-    this._state.profileData.posts.push(newPost)
-    this._state.profileData.postText = ''
-    this._subscriber()
-  },
-  changePostText(text: string) {
-    this._state.profileData.postText = text
-    this._subscriber()
+  }
+}
+
+export const AddPostAC = (): AddPostAT => {
+  return {
+    type: 'ADD-POST'
+  }
+}
+
+export const ChangePostTextAC = (text: string): ChangePostTextAT => {
+  return {
+    type: 'CHANGE-POST-TEXT',
+    text
   }
 }

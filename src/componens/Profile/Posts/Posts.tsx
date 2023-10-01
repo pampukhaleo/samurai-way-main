@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { Button } from '../../Button/Button';
 import './posts.css'
 import { PostItem } from './PostItem/PostItem';
+import { ActionTypes } from "../../../redux/state";
+import { AddPostAC, ChangePostTextAC } from "../../../redux/state";
 
 type Posts = {
   id: number
@@ -13,20 +15,19 @@ type PostsType = {
   profilePicture: string
   posts: Posts[]
   postText: string
-  addPost: () => void
-  changePostText: (text: string) => void
+  dispatch: (action: ActionTypes) => void
 }
 
-export const Posts = ({ profilePicture, posts, addPost, changePostText, postText }: PostsType) => {
+export const Posts = ({ profilePicture, posts, dispatch, postText }: PostsType) => {
 
   const postTextValue = useRef<HTMLInputElement>(null);
   const onClickHandler = () => {
-    addPost()
+    dispatch(AddPostAC())
   }
 
   const onChangeHandler = () => {
     const postText = postTextValue?.current?.value ?? ''
-    changePostText(postText)
+    dispatch(ChangePostTextAC(postText))
   }
 
   return (

@@ -27,8 +27,7 @@ function App(props: PropsType) {
           <Sidebar buttonsList={ state.headerButtonsList }/>
           <div className="content">
             <Route path="/profile"
-                   render={ () => <Profile addPost={ store.addPost.bind(store) }
-                                           changePostText={ store.changePostText.bind(store) }
+                   render={ () => <Profile dispatch={ store.dispatch.bind(store) }
                                            profileData={ state.profileData }/> }/>
             <Route path="/messages/"
                    render={ () => <Messages dialogData={ state.dialogData }
