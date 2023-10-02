@@ -18,7 +18,6 @@ type PropsType = {
 function App(props: PropsType) {
   const { store } = props
   const state = props.store.getState()
-  console.log(state.profileData);
   return (
     <BrowserRouter>
       <div className="App">
@@ -30,8 +29,8 @@ function App(props: PropsType) {
                    render={ () => <Profile dispatch={ store.dispatch.bind(store) }
                                            profileData={ state.profileData }/> }/>
             <Route path="/messages/"
-                   render={ () => <Messages dialogData={ state.dialogData }
-                                            messageData={ state.messageData }/> }/>
+                   render={ () => <Messages dispatch={ store.dispatch.bind(store) }
+                                            dialogData={ state.dialogData }/> }/>
             <Route path="/news" render={ () => <News/> }/>
             <Route path="/music" render={ () => <Music/> }/>
             <Route path="/settings" render={ () => <Settings/> }/>

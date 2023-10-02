@@ -2,18 +2,18 @@ import React from 'react'
 import './messages.css'
 import { DialogsItem } from './Dialogs/Dialog';
 import { Message } from './Message/Message';
-import { DialogDataType, MessageDataType } from '../../redux/state';
+import { ActionTypes, DialogDataType } from '../../redux/state';
 
 type PropsTyper = {
-  messageData: MessageDataType[]
-  dialogData: DialogDataType[]
+  dialogData: DialogDataType
+  dispatch: (action: ActionTypes) => void
 }
 
-export const Messages = ({ messageData, dialogData }: PropsTyper) => {
+export const Messages = ({ dialogData, dispatch }: PropsTyper) => {
   return (
     <div className="container">
-      <DialogsItem dialogData={ dialogData }/>
-      <Message messageData={ messageData }/>
+      <DialogsItem dialogs={ dialogData.dialogs }/>
+      <Message messages={ dialogData.messages } newMessageText={dialogData.newMessageText} dispatch={dispatch}/>
     </div>
   )
 }

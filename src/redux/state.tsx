@@ -22,16 +22,17 @@ export type HeaderButtonListType = {
 }
 
 export type DialogDataType = {
+  dialogs: DialogsType[]
+  messages: MessageDataType[]
+  newMessageText: string
+}
+
+export type DialogsType = {
   id: number
   profileName: string
 }
 
 export type MessageDataType = {
-  id: number
-  messages: MessagesType[]
-}
-
-type MessagesType = {
   id: number
   text: string
 }
@@ -39,8 +40,7 @@ type MessagesType = {
 export type RootStateType = {
   headerButtonsList: HeaderButtonListType[]
   profileData: ProfileDataType
-  dialogData: DialogDataType[]
-  messageData: MessageDataType[]
+  dialogData: DialogDataType
 }
 
 export type StoreType = {
@@ -60,16 +60,25 @@ type ChangePostTextAT = {
   text: string
 }
 
-export type ActionTypes = AddPostAT | ChangePostTextAT
+type AddMessageAT = {
+  type: 'ADD-MESSAGE'
+}
+
+type ChangeMessageTextAT = {
+  type: 'CHANGE-MESSAGE-TEXT'
+  text: string
+}
+
+export type ActionTypes = AddPostAT | ChangePostTextAT | AddMessageAT | ChangeMessageTextAT
 
 export const store: StoreType = {
   _state: {
     headerButtonsList: [
-      { id: 1, name: 'Profile', href: '/profile' },
-      { id: 2, name: 'Messages', href: '/messages/' },
-      { id: 3, name: 'News', href: '/news' },
-      { id: 4, name: 'Music', href: '/music' },
-      { id: 5, name: 'Settings', href: '/settings' },
+      { id: 10001, name: 'Profile', href: '/profile' },
+      { id: 10002, name: 'Messages', href: '/messages/' },
+      { id: 10003, name: 'News', href: '/news' },
+      { id: 10004, name: 'Music', href: '/music' },
+      { id: 10005, name: 'Settings', href: '/settings' },
     ],
     profileData: {
       name: 'Leo P.',
@@ -79,84 +88,43 @@ export const store: StoreType = {
       website: 'https://github.com/pampukhaleo',
       profilePicture: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80',
       posts: [
-        { id: 1, text: 'Hi, my name is Neo', likes: 12 },
-        { id: 2, text: 'Hello, im from Ukraine', likes: 13 },
-        { id: 3, text: 'How are you all doing boys', likes: 14 }
+        { id: 1001, text: 'Hi, my name is Neo', likes: 12 },
+        { id: 1002, text: 'Hello, im from Ukraine', likes: 13 },
+        { id: 1003, text: 'How are you all doing boys', likes: 14 }
       ],
       postText: ''
     },
-    dialogData: [
-      {
-        id: 1,
-        profileName: 'Leo',
-      },
-      {
-        id: 2,
-        profileName: 'Neo',
-      },
-    ],
-    messageData: [
-      {
-        id: 1,
-        messages: [
-          {
-            id: 1,
-            text: 'textte xttext text qwqweqwe qwe qwasd asdzxcz asdqwe dazscz qaweqwe dsad eqwe'
-          },
-          {
-            id: 2,
-            text: 'text1'
-          },
-          {
-            id: 3,
-            text: 'text2'
-          },
-          {
-            id: 4,
-            text: 'text3'
-          }]
-      },
-      {
-        id: 2,
-        messages: [
-          {
-            id: 5,
-            text: 'textte xttext text qwe qwasd asdzxcz asdqwe dazscz qaweqwe dsad eqwe'
-          },
-          {
-            id: 6,
-            text: 'text4'
-          },
-          {
-            id: 7,
-            text: 'text5'
-          },
-          {
-            id: 8,
-            text: 'text6'
-          }]
-      },
-      {
-        id: 3,
-        messages: [
-          {
-            id: 6,
-            text: 'textte xttext text qwe qwasd asdzxcz asdqw dsad eqwe'
-          },
-          {
-            id: 7,
-            text: 'text4text4'
-          },
-          {
-            id: 8,
-            text: 'text5text5'
-          },
-          {
-            id: 9,
-            text: 'text6text6'
-          }]
-      },
-    ]
+    dialogData: {
+      dialogs: [
+        {
+          id: 100,
+          profileName: 'Leo',
+        },
+        {
+          id: 101,
+          profileName: 'Neo',
+        }
+      ],
+      messages: [
+        {
+          id: 1,
+          text: 'textte xttext text qwqweqwe qwe qwasd asdzxcz asdqwe dazscz qaweqwe dsad eqwe'
+        },
+        {
+          id: 2,
+          text: 'text1'
+        },
+        {
+          id: 3,
+          text: 'text2'
+        },
+        {
+          id: 4,
+          text: 'text3'
+        }
+      ],
+      newMessageText: '',
+    },
   },
   _subscriber() {
     console.log('State changed')
@@ -183,6 +151,19 @@ export const store: StoreType = {
         this._state.profileData.postText = action.text
         this._subscriber()
         break
+      case 'ADD-MESSAGE':
+        const newMessage = {
+          id: 5,
+          text: this._state.dialogData.newMessageText,
+        }
+        this._state.dialogData.messages.push(newMessage)
+        this._state.dialogData.newMessageText = ''
+        this._subscriber()
+        break
+      case 'CHANGE-MESSAGE-TEXT':
+        this._state.dialogData.newMessageText = action.text
+        this._subscriber()
+        break
     }
   }
 }
@@ -196,6 +177,19 @@ export const AddPostAC = (): AddPostAT => {
 export const ChangePostTextAC = (text: string): ChangePostTextAT => {
   return {
     type: 'CHANGE-POST-TEXT',
+    text
+  }
+}
+
+export const AddMessageAC = (): AddMessageAT => {
+  return {
+    type: 'ADD-MESSAGE'
+  }
+}
+
+export const ChangeMessageTextAC = (text: string): ChangeMessageTextAT => {
+  return {
+    type: 'CHANGE-MESSAGE-TEXT',
     text
   }
 }
