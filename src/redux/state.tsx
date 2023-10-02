@@ -1,3 +1,6 @@
+import { AddPostAT, ChangePostTextAT, profileDataReducer } from "./profileData-reducer";
+import { AddMessageAT, ChangeMessageTextAT, dialogDataReducer } from "./dialogData-reducer";
+
 export type ProfileDataType = {
   name: string
   birthday: number
@@ -49,24 +52,6 @@ export type StoreType = {
   getState: () => RootStateType
   subscribe: (observer: () => void) => void
   dispatch: (action: ActionTypes) => void
-}
-
-type AddPostAT = {
-  type: 'ADD-POST'
-}
-
-type ChangePostTextAT = {
-  type: 'CHANGE-POST-TEXT'
-  text: string
-}
-
-type AddMessageAT = {
-  type: 'ADD-MESSAGE'
-}
-
-type ChangeMessageTextAT = {
-  type: 'CHANGE-MESSAGE-TEXT'
-  text: string
 }
 
 export type ActionTypes = AddPostAT | ChangePostTextAT | AddMessageAT | ChangeMessageTextAT
@@ -136,60 +121,8 @@ export const store: StoreType = {
     this._subscriber = observer
   },
   dispatch(action: ActionTypes) {
-    switch (action.type) {
-      case 'ADD-POST':
-        const newPost = {
-          id: 5,
-          text: this._state.profileData.postText,
-          likes: 0
-        }
-        this._state.profileData.posts.push(newPost)
-        this._state.profileData.postText = ''
-        this._subscriber()
-        break
-      case 'CHANGE-POST-TEXT':
-        this._state.profileData.postText = action.text
-        this._subscriber()
-        break
-      case 'ADD-MESSAGE':
-        const newMessage = {
-          id: 5,
-          text: this._state.dialogData.newMessageText,
-        }
-        this._state.dialogData.messages.push(newMessage)
-        this._state.dialogData.newMessageText = ''
-        this._subscriber()
-        break
-      case 'CHANGE-MESSAGE-TEXT':
-        this._state.dialogData.newMessageText = action.text
-        this._subscriber()
-        break
-    }
-  }
-}
-
-export const AddPostAC = (): AddPostAT => {
-  return {
-    type: 'ADD-POST'
-  }
-}
-
-export const ChangePostTextAC = (text: string): ChangePostTextAT => {
-  return {
-    type: 'CHANGE-POST-TEXT',
-    text
-  }
-}
-
-export const AddMessageAC = (): AddMessageAT => {
-  return {
-    type: 'ADD-MESSAGE'
-  }
-}
-
-export const ChangeMessageTextAC = (text: string): ChangeMessageTextAT => {
-  return {
-    type: 'CHANGE-MESSAGE-TEXT',
-    text
+    profileDataReducer(this._state.profileData, action)
+    dialogDataReducer(this._state.dialogData, action)
+    this._subscriber()
   }
 }

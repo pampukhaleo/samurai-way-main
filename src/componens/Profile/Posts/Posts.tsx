@@ -3,7 +3,7 @@ import { Button } from '../../Button/Button';
 import './posts.css'
 import { PostItem } from './PostItem/PostItem';
 import { ActionTypes } from "../../../redux/state";
-import { AddPostAC, ChangePostTextAC } from "../../../redux/state";
+import { AddPostAC, ChangePostTextAC } from "../../../redux/profileData-reducer";
 
 type Posts = {
   id: number

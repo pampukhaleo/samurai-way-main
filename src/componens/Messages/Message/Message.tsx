@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react'
-import { ActionTypes, AddMessageAC, ChangeMessageTextAC, MessageDataType } from '../../../redux/state';
+import { ActionTypes, MessageDataType } from '../../../redux/state';
+import { AddMessageAC, ChangeMessageTextAC } from "../../../redux/dialogData-reducer";
 
 type PropsType = {
   messages: MessageDataType[]
